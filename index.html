@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modern Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    :root{
+      --bg:#0f172a;
+      --text:#f8fafc;
+      --secondary:#cbd5e1;
+      --card:#1e293b;
+      --accent:#38bdf8;
+      --nav:#111827;
+    }
+
+    body.light{
+      --bg:#f8fafc;
+      --text:#0f172a;
+      --secondary:#475569;
+      --card:#ffffff;
+      --accent:#0284c7;
+      --nav:#e2e8f0;
+    }
+
+    body{
+      font-family:'Poppins',sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      transition:0.3s ease;
+      overflow-x:hidden;
+    }
+
+    .section{
+      padding:100px 10%;
+    }
+
+    h2{
+      text-align:center;
+      margin-bottom:25px;
+      font-size:2.5rem;
+    }
+
+    .navbar{
+      position:sticky;
+      top:0;
+      z-index:1000;
+
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+
+      padding:18px 10%;
+
+      background:var(--nav);
+
+      box-shadow:0 2px 10px rgba(0,0,0,0.15);
+    }
+
+    .logo{
+      color:var(--accent);
+      font-size:1.7rem;
+      font-weight:700;
+    }
+
+    .nav-links{
+      display:flex;
+      gap:30px;
+      list-style:none;
+    }
+
+    .nav-links a{
+      color:var(--text);
+      text-decoration:none;
+      font-weight:500;
+      transition:0.3s;
+    }
+
+    .nav-links a:hover{
+      color:var(--accent);
+    }
+
+    .nav-actions{
+      display:flex;
+      align-items:center;
+      gap:15px;
+    }
+
+    .icon-btn{
+      background:none;
+      border:none;
+      color:var(--text);
+      font-size:1.2rem;
+      cursor:pointer;
+    }
+
+    .mobile-only{
+      display:none;
+    }
+
+    .hero{
+      min-height:92vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      padding:0 10%;
+    }
+
+    .hero-content{
+      max-width:850px;
+    }
+
+    .hero h1{
+      font-size:4rem;
+      line-height:1.2;
+      margin-bottom:20px;
+    }
+
+    .hero span{
+      color:var(--accent);
+    }
+
+    .hero p{
+      color:var(--secondary);
+      font-size:1.2rem;
+      line-height:1.8;
+      margin-bottom:35px;
+    }
+
+    .hero-buttons{
+      display:flex;
+      justify-content:center;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      padding:14px 28px;
+      border-radius:12px;
+      text-decoration:none;
+      font-weight:600;
+      transition:0.3s ease;
+    }
+
+    .primary-btn{
+      background:var(--accent);
+      color:black;
+    }
+
+    .secondary-btn{
+      border:2px solid var(--accent);
+      color:var(--accent);
+    }
+
+    .btn:hover{
+      transform:translateY(-5px);
+    }
+
+    .section-text{
+      max-width:850px;
+      margin:auto;
+      text-align:center;
+      color:var(--secondary);
+      line-height:1.9;
+    }
+
+    .skills{
+      margin-top:45px;
+      display:flex;
+      justify-content:center;
+      gap:15px;
+      flex-wrap:wrap;
+    }
+
+    .skills span{
+      background:var(--card);
+      padding:12px 22px;
+      border-radius:30px;
+      box-shadow:0 5px 15px rgba(0,0,0,0.15);
+      transition:0.3s ease;
+    }
+
+    .skills span:hover{
+      transform:scale(1.08);
+    }
+
+    .project-grid{
+      margin-top:40px;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:25px;
+    }
+
+    .card{
+      background:var(--card);
+      padding:35px 25px;
+      border-radius:22px;
+      text-align:center;
+      box-shadow:0 8px 20px rgba(0,0,0,0.15);
+      transition:0.3s ease;
+    }
+
+    .card:hover{
+      transform:translateY(-10px);
+    }
+
+    .card i{
+      font-size:2rem;
+      color:var(--accent);
+      margin-bottom:20px;
+    }
+
+    .card h3{
+      margin-bottom:15px;
+    }
+
+    .card p{
+      color:var(--secondary);
+      line-height:1.8;
+      margin-bottom:22px;
+    }
+
+    .card button{
+      padding:10px 22px;
+      border:none;
+      border-radius:10px;
+      background:var(--accent);
+      color:black;
+      cursor:pointer;
+      font-weight:600;
+    }
+
+    .contact-container{
+      max-width:700px;
+      margin:40px auto 0;
+      display:flex;
+      flex-direction:column;
+      gap:25px;
+    }
+
+    .contact-item{
+      background:var(--card);
+      padding:18px 24px;
+      border-radius:16px;
+      display:flex;
+      align-items:center;
+      gap:15px;
+      box-shadow:0 5px 15px rgba(0,0,0,0.12);
+    }
+
+    .contact-item i{
+      color:var(--accent);
+      font-size:1.2rem;
+    }
+
+    footer{
+      text-align:center;
+      padding:25px;
+      background:var(--nav);
+      color:var(--secondary);
+    }
+
+    .fade-in{
+      opacity:0;
+      transform:translateY(40px);
+      transition:1s ease;
+    }
+
+    .fade-in.show{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    @media(max-width:768px){
+
+      .mobile-only{
+        display:block;
+      }
+
+      .nav-links{
+        position:absolute;
+        top:72px;
+        right:-100%;
+        width:240px;
+        background:var(--nav);
+        flex-direction:column;
+        align-items:center;
+        padding:30px 0;
+        border-radius:0 0 0 16px;
+        transition:0.3s ease;
+      }
+
+      .nav-links.active{
+        right:0;
+      }
+
+      .hero h1{
+        font-size:2.7rem;
+      }
+
+      .hero p{
+        font-size:1rem;
+      }
+
+      .section{
+        padding:80px 7%;
+      }
+    }
+
+    @media(max-width:500px){
+
+      .hero h1{
+        font-size:2.2rem;
+      }
+
+      .hero-buttons{
+        flex-direction:column;
+      }
+
+      .btn{
+        width:100%;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+
+    <div class="logo">Portfolio</div>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <div class="nav-actions">
+
+      <button id="themeToggle" class="icon-btn">
+        <i class="fa-solid fa-moon"></i>
+      </button>
+
+      <button id="menuBtn" class="icon-btn mobile-only">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+    </div>
+
+  </nav>
+
+  <section class="hero" id="home">
+
+    <div class="hero-content">
+
+      <h1>
+        Hello, I'm <span>Kavya Shah</span>
+      </h1>
+
+      <p>
+        IT Student • Web Deveoper • AI/ML Enthusiast
+      </p>
+
+      <div class="hero-buttons">
+
+        <a href="#projects" class="btn primary-btn">
+          View Projects
+        </a>
+
+        <a href="#contact" class="btn secondary-btn">
+          Contact Me
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="about section fade-in" id="about">
+
+    <h2>About Me</h2>
+
+    <p class="section-text">
+      I’m a 3rd-year Information Technology undergraduate at CVM University, passionate about Web Application Development and AI/ML. I’m focused on sharpening my technical skills, applying them to real-world projects, and improving how I communicate and collaborate. I enjoy exploring new technologies, working with teams, and finding ways to grow both personally and professionally.
+    </p>
+
+    <div class="skills">
+        <span>Python</span>
+        <span>C</span>
+        <span>C++</span>
+        <span>HTML</span>
+        <span>CSS</span>
+        <span>JavaScript</span>
+    </div>
+
+  </section>
+
+  <section class="projects section fade-in" id="projects">
+
+    <h2>Projects</h2>
+
+    <div class="project-grid">
+
+      <div class="card">
+        <i class="fa-solid fa-book"></i>
+        <h3>Smart and Secured Banking System</h3>
+        <p align="justify-content">Web based Banking application made using Python, Flask, SQLite, and Machine Learning with fraud detection, secure authentication, and transaction management features. </p>
+        <button>GitHub</button>
+      </div>
+
+      <!-- <div class="card">
+        <i class="fa-solid fa-comments"></i>
+        <h3>Chat Application</h3>
+        <p>Client-server Java chat application using sockets.</p>
+        <button>GitHub</button>
+      </div> -->
+
+      <div class="card">
+        <i class="fa-solid fa-utensils"></i>
+        <h3>Recipe Recommender</h3>
+        <p>Smart recipe recommendation desktop application.</p>
+        <button>GitHub</button>
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="contact section fade-in" id="contact">
+
+    <h2>Contact</h2>
+
+    <div class="contact-container">
+
+      <div class="contact-item">
+        <i class="fa-solid fa-envelope"></i>
+        <span><a href="mailto:kavyakumark500@gmail.com">kavyakumark500@gmail.com</a></span>
+      </div>
+
+      <div class="contact-item">
+        <i class="fa-brands fa-github"></i>
+        <span><a href="https://github.com/kavyashah01">github.com/kavyashah01</a></span>
+      </div>
+
+      <!-- <div class="contact-item">
+        <i class="fa-brands fa-linkedin"></i>
+        <span>linkedin.com/in/yourprofile</span>
+      </div> -->
+    </div>
+
+  </section>
+
+  <footer>
+    © 2026 Kavya Shah • All Rights Reserved
+  </footer>
+
+  <script>
+
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
+
+    if(localStorage.getItem('theme') === 'light'){
+      body.classList.add('light');
+      themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+    }
+
+    themeToggle.addEventListener('click', () => {
+
+      body.classList.toggle('light');
+
+      if(body.classList.contains('light')){
+
+        localStorage.setItem('theme','light');
+        themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+
+      }else{
+
+        localStorage.setItem('theme','dark');
+        themeToggle.innerHTML = '<i class="fa-solid fa-moon"></i>';
+      }
+    });
+
+    const menuBtn = document.getElementById('menuBtn');
+    const navLinks = document.getElementById('navLinks');
+
+    menuBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+      });
+    });
+
+    const fadeElements = document.querySelectorAll('.fade-in');
+
+    function reveal(){
+
+      fadeElements.forEach(element => {
+
+        const top = element.getBoundingClientRect().top;
+
+        if(top < window.innerHeight - 100){
+          element.classList.add('show');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', reveal);
+    reveal();
+
+  </script>
+
+</body>
+</html>

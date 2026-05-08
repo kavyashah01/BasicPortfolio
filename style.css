@@ -1,0 +1,68 @@
+/* =========================
+   GLOBAL
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+:root{
+
+    --bg:#0f172a;
+    --text:#f8fafc;
+    --secondary:#cbd5e1;
+    --card:#1e293b;
+    --accent:#38bdf8;
+    --nav:#111827;
+}
+
+body.light{
+
+    --bg:#f8fafc;
+    --text:#0f172a;
+    --secondary:#475569;
+    --card:#ffffff;
+    --accent:#0284c7;
+    --nav:#e2e8f0;
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    background:var(--bg);
+    color:var(--text);
+
+    transition:0.3s ease;
+
+    overflow-x:hidden;
+}
+
+.section{
+    padding:100px 10%;
+}
+
+h2{
+    text-align:center;
+    margin-bottom:25px;
+    font-size:2.4rem;
+}
+
+.section-text{
+
+    max-width:850px;
+
+    margin:auto;
+
+    text-align:center;
+
+    color:var(--secondary);
+
+    line-height:1.9;
+}
